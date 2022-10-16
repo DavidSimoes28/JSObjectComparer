@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>Object comparison details</h3>
+        <pre id="differences"></pre>
+    </div>
+
+    <div>
+        <h3>New changes</h3>
+        <pre id="newDifferences"></pre>
+    </div>
+    
+    <script type="text/javascript" src="ObjectDeepDifference.js"></script>
+    <script type="text/javascript">
+        let oldObject = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 18,
+            classes: [
+                {
+                    name: "Math",
+                    credits: "6"
+                },
+                {
+                    name: "Science",
+                    credits: "6"
+                },
+                {
+                    name: "English",
+                    credits: "6"
+                },
+            ]
+        };
+
+        var newObject = {
+            firstName: "Jane",
+            lastName: "Doe",
+            age: 18,
+            classes: [
+                {
+                    name: "Math",
+                    credits: "6"
+                },
+                {
+                    name: "Science",
+                    credits: "7"
+                },
+                {
+                    name: "English",
+                    credits: "5"
+                },
+                {
+                    name: "Philosophy",
+                    credits: "3"
+                },
+            ]
+        };
+
+        let differences = ObjectDeepDifference.Map(oldObject, newObject);
+        let newDifferences = ObjectDeepDifference.Map(oldObject, newObject, true);
+
+        document.getElementById("differences").innerHTML = JSON.stringify(differences, null, 4);
+        document.getElementById("newDifferences").innerHTML = JSON.stringify(newDifferences, null, 4);
+    </script>
+</body>
+</html>
